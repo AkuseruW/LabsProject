@@ -113,14 +113,91 @@ return [
             'text' => 'Blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
+
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Edit Home Page',
             'icon'        => 'file',
-            'badge'       => 4,
             'badge_color' => 'success',
+            'submenu' =>[
+                [
+                    'text' => 'IMAGE FOND',
+                    'url' => '/imageBackground',
+                ],
+                [
+                    'text' => 'SERVICES',
+                    'url' => '/service',
+                ],
+                [
+                    'text' => 'ABOUT',
+                    'url' => '/about',
+                ],
+                [
+                    'text' => 'VIDEO',
+                    'url' => '/video',
+                ],
+                [
+                    'text' => 'TESTIMONIAL',
+                    'url' => '/testimonial',
+                ]
+            ]
         ],
+        [
+            'text'        => 'Service Page',
+            'icon'        => 'file',
+            'badge_color' => 'success',
+            'submenu' =>[
+                // [
+                //     'text' => 'IMAGE FOND',
+                //     'url' => '/imageBackground',
+                // ],
+                // [
+                //     'text' => 'SERVICES',
+                //     'url' => '/service',
+                // ],
+                // [
+                //     'text' => 'ABOUT',
+                //     'url' => '/about',
+                // ],
+                // [
+                //     'text' => 'VIDEO',
+                //     'url' => '/video',
+                // ],
+                // [
+                //     'text' => 'TESTIMONIAL',
+                //     'url' => '/testimonial',
+                // ]
+            ]
+        ],
+
+        [
+            'text'        => 'Blog Page',
+            'icon'        => 'file',
+            'badge_color' => 'success',
+            'submenu' =>[
+                [
+                    'text' => 'ARTICLES',
+                    'url' => '/articles',
+                ],
+                // [
+                //     'text' => 'SERVICES',
+                //     'url' => '/service',
+                // ],
+                // [
+                //     'text' => 'ABOUT',
+                //     'url' => '/about',
+                // ],
+                // [
+                //     'text' => 'VIDEO',
+                //     'url' => '/video',
+                // ],
+                // [
+                //     'text' => 'TESTIMONIAL',
+                //     'url' => '/testimonial',
+                // ]
+            ]
+        ],
+
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

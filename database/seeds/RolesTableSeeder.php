@@ -17,7 +17,20 @@ class RolesTableSeeder extends Seeder
         ]);
         DB::table('roles')->insert([
             'id' => '2',
+            'type' => 'editeur',
+        ]);
+        DB::table('roles')->insert([
+            'id' => '3',
             'type' => 'membre',
+        ]);
+
+        //position
+        DB::table('positions')->insert([
+            'id' => '1',
+            'name' => 'WebDev',
+        ]);
+        DB::table('positions')->insert([
+            'name' => 'Concepteur de DB',
         ]);
     }
 }
