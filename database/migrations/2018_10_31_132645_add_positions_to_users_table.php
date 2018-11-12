@@ -14,8 +14,8 @@ class AddPositionsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedInteger('position')->nullable();
-            $table->foreign('position')->references('id')->on('users');
+            $table->unsignedInteger('positions_id')->nullable();
+            $table->foreign('positions_id')->references('id')->on('positions');
         });
     }
 

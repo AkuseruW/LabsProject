@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {return view('home');})->name('Acceuil');
-Route::get('/services',function(){return view('services');})->name('services');
+Route::get('/', 'PageHomeController@index');
+Route::get('/services', 'PageServiceController@index')->name('services');
+
 Route::get('/blog',function(){return view('blog');})->name('blog');
 Route::get('/contact',function(){return view('contact');})->name('contact');
 Route::get('/blog-post',function(){return view('blog-post');})->name('blog');
@@ -32,7 +33,15 @@ Route::get('/video', 'HomeController@indexHomeVideo');
 Route::get('/about', 'HomeController@indexHomeAbout');
 Route::get('/team', 'HomeController@indexHomeTeam');
 Route::get('/articles', 'BlogPageController@indexArticles');
+Route::get('/user','UserController@index');
+Route::get('/membre','UserController@indexMembre');
 
+//Delete Admin Page
+Route::post('/deleteUser/{id}','UserController@destroy');
+
+//Edit/Update
+Route::get('/editUser/{id}','UserController@edit');
+Route::post('/updateUser/{id}','UserController@update');
 
 
 //Create Adimn function
@@ -42,7 +51,7 @@ Route::post('/addBackground','HomeBackgroundController@create');
 Route::post('/createTesti','TestimonialController@create');
 Route::post('/createServiceOk','ServiceController@create');
 Route::post('/createArticles','ArticleController@create');
-Route::get('/user','UserController@index');
+Route::post('/createUser','UserController@create');
 
 //Edite-Home Page
 

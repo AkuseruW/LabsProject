@@ -9,6 +9,8 @@ use App\VideoHomePage;
 use App\HomeBackground;
 use App\Testimonial;
 use App\Service;
+use App\Position;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -29,7 +31,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('administration/adminHome');
+        $positions = Position::all();
+        $admin = User::find([1]);
+        $users = User::all()->where('id', '>', '1')->random(3);
+
+        return view('administration/adminHome',compact('admin','users','positions'));
     }
 
     public function indexValidationPost()
