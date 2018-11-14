@@ -11,6 +11,9 @@ use App\Testimonial;
 use App\Service;
 use App\Position;
 use App\User;
+use App\Icone;
+use App\Project;
+
 
 class HomeController extends Controller
 {
@@ -33,9 +36,13 @@ class HomeController extends Controller
     {
         $positions = Position::all();
         $admin = User::find([1]);
-        $users = User::all()->where('id', '>', '1')->random(3);
+        $users = User::all()->where('id', '>', '1')->random(1);
+        $users2 = User::all()->where('id', '>', '1')->random(1);
 
-        return view('administration/adminHome',compact('admin','users','positions'));
+        // if ($users2->id != $users->id) {
+        // }
+
+        return view('administration/adminHome',compact('admin','users','positions','users2'));
     }
 
     public function indexValidationPost()
@@ -52,7 +59,8 @@ class HomeController extends Controller
     public function indexHomeService()
     {
         $service = Service::all();
-        return view('homePageTask/service',compact('service'));
+        $icones = Icone::all();
+        return view('homePageTask/myService',compact('service','icones'));
     }
 
     public function indexHomeImageBG()
@@ -76,5 +84,12 @@ class HomeController extends Controller
     public function indexHomeTeam()
     {
         return view('homePageTask/team',compact(''));
+    }
+
+    public function indexMyProject()
+    {
+        $projects = Project::all();
+        $icones = Icone::all();
+        return view('servicePage/myProject',compact('projects','icones'));
     }
 }

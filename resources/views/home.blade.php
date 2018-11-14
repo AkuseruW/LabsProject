@@ -31,12 +31,12 @@
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    {{-- <div id="preloder">
         <div class="loader">
             <img src="img/logo.png" alt="">
             <h2>Loading.....</h2>
         </div>
-    </div>
+    </div> --}}
 
 
     <!-- Header section -->
@@ -90,7 +90,7 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="lab-card">
                             <div class="icon">
-                                {!! $service->icone !!}
+                                {!! $service->iconeService->icone !!}
                             </div>
                             <h2>{{ $service->titre }}</h2>
                             <p>{{ $service->description }}</p>
@@ -265,7 +265,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="service">
                         <div class="icon">
-                                {!! $serv->icone !!}
+                                {!! $serv->iconeService->icone !!}
                         </div>
                         <div class="service-text">
                                 <h2>{{ $serv->titre }}</h2>
@@ -296,27 +296,29 @@
             </div>
             <div class="row">
                 <!-- single member -->
+
                 <div class="col-sm-4">
                     <div class="member">
-                        <img src="img/team/1.jpg" alt="">
-                        <h2>Christinne Williams</h2>
-                        <h3>Project Manager</h3>
+                        <img src="img/team/{{ $users[0]->imageUsers->url }}" alt="">
+                        <h2>{{ $users[0]->name }}</h2>
+                        <h3>{{ $users[0]->positions->name }}</h3>
+                    </div>
+                </div>
+
+                <!-- single member -->
+                <div class="col-sm-4">
+                    <div class="member">
+                            <img src="img/team/{{ $admin[0]->imageUsers->url }}" alt="">
+                            <h2>{{ $admin[0]->name }}</h2>
+                            <h3>{{ $admin[0]->positions->name }}</h3>
                     </div>
                 </div>
                 <!-- single member -->
                 <div class="col-sm-4">
                     <div class="member">
-                        <img src="img/team/2.jpg" alt="">
-                        <h2>Christinne Williams</h2>
-                        <h3>Junior developer</h3>
-                    </div>
-                </div>
-                <!-- single member -->
-                <div class="col-sm-4">
-                    <div class="member">
-                        <img src="img/team/3.jpg" alt="">
-                        <h2>Christinne Williams</h2>
-                        <h3>Digital designer</h3>
+                            <img src="img/team/{{ $users2[0]->imageUsers->url }}" alt="">
+                            <h2>{{ $users2[0]->name }}</h2>
+                            <h3>{{ $users2[0]->positions->name }}</h3>
                     </div>
                 </div>
             </div>

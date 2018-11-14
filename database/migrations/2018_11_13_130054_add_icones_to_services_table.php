@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServicesTable extends Migration
+class AddIconesToServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('titre');
-            $table->text('description');
-            $table->timestamps();
+        Schema::table('services', function (Blueprint $table) {
+            $table->unsignedInteger('icones_id')->nullable();
+            $table->foreign('icones_id')->references('id')->on('icones');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::table('services', function (Blueprint $table) {
+            //
+        });
     }
 }

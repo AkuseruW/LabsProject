@@ -14,7 +14,7 @@
 Route::get('/', 'PageHomeController@index');
 Route::get('/services', 'PageServiceController@index')->name('services');
 
-Route::get('/blog',function(){return view('blog');})->name('blog');
+Route::get('/project','ProjectController@index');
 Route::get('/contact',function(){return view('contact');})->name('contact');
 Route::get('/blog-post',function(){return view('blog-post');})->name('blog');
 Auth::routes();
@@ -28,13 +28,15 @@ Route::get('/homeEdit','HomeController@indexHomeEdit');
 //Create Admin Page
 Route::get('/imageBackground', 'HomeController@indexHomeImageBG');
 Route::get('/testimonial', 'HomeController@indexHomeTestimonial');
-Route::get('/service', 'HomeController@indexHomeService');
+Route::get('/service', 'ServiceController@index');
+Route::get('/myService', 'HomeController@indexHomeService');
 Route::get('/video', 'HomeController@indexHomeVideo');
 Route::get('/about', 'HomeController@indexHomeAbout');
 Route::get('/team', 'HomeController@indexHomeTeam');
 Route::get('/articles', 'BlogPageController@indexArticles');
 Route::get('/user','UserController@index');
 Route::get('/membre','UserController@indexMembre');
+Route::get('/myProject','HomeController@indexMyProject');
 
 //Delete Admin Page
 Route::post('/deleteUser/{id}','UserController@destroy');
@@ -52,6 +54,8 @@ Route::post('/createTesti','TestimonialController@create');
 Route::post('/createServiceOk','ServiceController@create');
 Route::post('/createArticles','ArticleController@create');
 Route::post('/createUser','UserController@create');
+Route::post('/createProject','ProjectController@create');
+
 
 //Edite-Home Page
 

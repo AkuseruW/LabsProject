@@ -15,7 +15,7 @@ class CardHomePageController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -91,12 +91,7 @@ class CardHomePageController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\CardHomePage  $cardHomePage
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(CardHomePage $cardHomePage)
     {
         //

@@ -15,7 +15,7 @@ class AddImagesToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedInteger('image_user')->nullable();
-            $table->foreign('image_user')->references('id')->on('users');
+            $table->foreign('image_user')->references('id')->on('images');
         });
     }
 

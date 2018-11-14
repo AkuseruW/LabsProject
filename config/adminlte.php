@@ -125,10 +125,6 @@ return [
                     'url' => '/imageBackground',
                 ],
                 [
-                    'text' => 'SERVICES',
-                    'url' => '/service',
-                ],
-                [
                     'text' => 'ABOUT',
                     'url' => '/about',
                 ],
@@ -143,31 +139,34 @@ return [
             ]
         ],
         [
+            'text'        => 'PROJECTS',
+            'icon'        => 'file',
+            'badge_color' => 'success',
+            'submenu' =>[
+                [
+                    'text' => 'NEW PROJECTS',
+                    'url' => '/project',
+                ],
+                [
+                    'text' => 'MY PROJECTS',
+                    'url' => '/myProject',
+                ],
+            ]
+        ],
+        [
             'text'        => 'Service Page',
             'icon'        => 'file',
             'badge_color' => 'success',
             'submenu' =>[
-                // [
-                //     'text' => 'IMAGE FOND',
-                //     'url' => '/imageBackground',
-                // ],
-                // [
-                //     'text' => 'SERVICES',
-                //     'url' => '/service',
-                // ],
-                // [
-                //     'text' => 'ABOUT',
-                //     'url' => '/about',
-                // ],
-                // [
-                //     'text' => 'VIDEO',
-                //     'url' => '/video',
-                // ],
-                // [
-                //     'text' => 'TESTIMONIAL',
-                //     'url' => '/testimonial',
-                // ]
-            ]
+                [
+                    'text' => 'NEW SERVICES',
+                    'url' => '/service',
+                ],
+                [
+                    'text' => 'MY SERVICES',
+                    'url' => '/myService',
+                ],
+                ]
         ],
 
         [

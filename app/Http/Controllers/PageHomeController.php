@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Service;
 use App\VideoHomePage;
 use App\TextEditor;
+use App\User;
+use App\Icone;
 
 class PageHomeController extends Controller
 {
@@ -13,8 +15,12 @@ class PageHomeController extends Controller
     {
         $serviceNoRandom = Service::all();
         $services = Service::all()->random(3);
+        $icones = Icone::all();
         $video = VideoHomePage::all();
         $text = TextEditor::all();
-        return view ('home',compact('services','serviceNoRandom','video','text'));
+        $admin = User::find([1]);
+        $users = User::all()->where('id', '>', '1')->random(1);
+        $users2 = User::all()->where('id', '>', '1', '&&', 'id', '!=', 'users' )->random(1);
+        return view ('home',compact('services','serviceNoRandom','video','text','admin','users','users2','icones'));
     }
 }

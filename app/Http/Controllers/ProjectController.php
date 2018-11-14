@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Service;
+use App\Project;
 use App\Icone;
-use Validator;
+use App\Image;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $service = Service::all();
+        $projects = Project::all();
         $icones = Icone::all();
-        return view('homePageTask/service',compact('service','icones'));
+        return view('servicePage/project',compact('projects','icones'));
     }
 
     /**
@@ -28,24 +28,19 @@ class ServiceController extends Controller
      */
     public function create(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'titreService' => 'required',
-            'descriptionService' => 'required',
-            'iconeService'=>'required',
-        ]);
+        $projects = new Project;
+        $projects->titre = $request->nameProject;
+        $projects->description = $request->descriptionProject;
+        $projects->icones_Project = $request->iconeProject;
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
+        if ($request->imageProject) {
+            $image = new Image;
+            $image->url = $request->imageProject;
+            $image->save();
         }
-
-        $service = new Service;
-        $service->titre = $request->titreService;
-        $service->description = $request->descriptionService;
-        $service->icones_id = $request->iconeService;
-        $service->save();
-        return redirect()->back()->with('success','Nouveau Service creer');
+        $projects->image_id = $image->id;
+        $projects->save();
+        return redirect()->back()->with('success','Nouveau projects creer');
     }
 
     /**
@@ -62,10 +57,10 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(Project $project)
     {
         //
     }
@@ -73,10 +68,10 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Project $project)
     {
         //
     }
@@ -85,10 +80,10 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Project $project)
     {
         //
     }
@@ -96,10 +91,10 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Project $project)
     {
         //
     }
