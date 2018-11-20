@@ -178,22 +178,10 @@ return [
                     'text' => 'ARTICLES',
                     'url' => '/articles',
                 ],
-                // [
-                //     'text' => 'SERVICES',
-                //     'url' => '/service',
-                // ],
-                // [
-                //     'text' => 'ABOUT',
-                //     'url' => '/about',
-                // ],
-                // [
-                //     'text' => 'VIDEO',
-                //     'url' => '/video',
-                // ],
-                // [
-                //     'text' => 'TESTIMONIAL',
-                //     'url' => '/testimonial',
-                // ]
+                [
+                    'text' => 'MES ARTICLES',
+                    'url' => '/mesArticles',
+                ],
             ]
         ],
 

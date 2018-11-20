@@ -15,7 +15,7 @@ class AddImagesToArticlesTable extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->unsignedInteger('image_article')->nullable();
-            $table->foreign('image_article')->references('id')->on('articles');
+            $table->foreign('image_article')->references('id')->on('images');
         });
     }
 

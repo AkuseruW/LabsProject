@@ -7,10 +7,10 @@
 @stop
 
 @section('content')
-@include('../partialsAdmin/membre')
+{{-- @include('../partialsAdmin/membre') --}}
 @include('../partialsAdmin/post')
 
-<div class="row">
+{{-- <div class="row">
 
     @foreach ($admin as $adm)
     <div class="col-xs-3">
@@ -38,6 +38,6 @@
     @endif
     @endforeach
 
-</div>
+</div> --}}
 
 @stop

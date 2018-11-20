@@ -11,6 +11,7 @@ class PositionTableSeeder extends Seeder
      */
     public function run()
     {
+        
         DB::table('positions')->insert([
             'name' => 'WebDev',
         ]);

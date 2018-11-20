@@ -13,6 +13,9 @@ use App\Position;
 use App\User;
 use App\Icone;
 use App\Project;
+use App\Article;
+use App\Categorie;
+use App\Tag;
 
 
 class HomeController extends Controller
@@ -36,13 +39,14 @@ class HomeController extends Controller
     {
         $positions = Position::all();
         $admin = User::find([1]);
+        $articles = Article::all();
         $users = User::all()->where('id', '>', '1')->random(1);
         $users2 = User::all()->where('id', '>', '1')->random(1);
 
         // if ($users2->id != $users->id) {
         // }
 
-        return view('administration/adminHome',compact('admin','users','positions','users2'));
+        return view('administration/adminHome',compact('admin','users','positions','users2','articles'));
     }
 
     public function indexValidationPost()
@@ -91,5 +95,19 @@ class HomeController extends Controller
         $projects = Project::all();
         $icones = Icone::all();
         return view('servicePage/myProject',compact('projects','icones'));
+    }
+
+    public function indexMesArticles(){
+        $articles = Article::with('tags')->get();
+        return view('blogPageTask/mesArticles',compact('articles'));
+    }
+
+    public function indexMonArticle($id){
+
+        $tags = Tag::find($id);
+        $article = Article::find($id);
+        $categories = Categorie::find($id);
+
+        return view('blogPageTask/monArticle',compact('article','categories','tags'));
     }
 }

@@ -7,6 +7,9 @@ use App\User;
 use App\Role;
 use App\Position;
 use Validator;
+use ImageIntervention;
+use App\Image;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -45,11 +48,15 @@ class UserController extends Controller
         $users = new User;
         $users->name = $request->name;
         $users->email = $request->email;
-        $users->password = $request->password;
+        $users->password = Hash::make($request->password);
         $users->roles_id = $request->role;
+
 
         if ($request->newPos == null) {
             $users->positions_id = $request->position;
+        }
+        elseif ($request->position == 1) {
+            $users->positions_id = NULL;
         }
         else {
             $position = new Position;
@@ -59,6 +66,34 @@ class UserController extends Controller
 
             $users->positions_id = $position->id;
         }
+
+
+        if ($request->image == true) {
+
+            $image = $request->image;
+
+            $filename = time().$image->hashName();
+
+            // taille de base
+            $tailleDeBase = ImageIntervention::make($image);
+            $tailleDeBase->save('img/originals/'.$filename);
+
+            //resize
+            $redimension = ImageIntervention::make($image)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $redimension->save('img/redimensionner/'.$filename);
+
+            //envoi DB
+            $table = new Image;
+            $table->url = $filename;
+
+            $table->save();
+
+        }
+
+        $users->image_user = $table->id;
 
         $users->save();
         return redirect()->back()->with('success','User create !');
@@ -102,6 +137,7 @@ class UserController extends Controller
     {
         $users=User::find($id);
         $users->delete();
+
         return redirect()->back()->with('success','User delete !');
     }
 

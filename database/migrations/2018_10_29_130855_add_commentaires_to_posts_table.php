@@ -17,6 +17,7 @@ class AddCommentairesToPostsTable extends Migration
             $table->unsignedInteger('commentaire_post')->nullable();
             $table->foreign('commentaire_post')->references('id')->on('posts');
         });
+
     }
 
     /**

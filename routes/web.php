@@ -16,7 +16,8 @@ Route::get('/services', 'PageServiceController@index')->name('services');
 
 Route::get('/project','ProjectController@index');
 Route::get('/contact',function(){return view('contact');})->name('contact');
-Route::get('/blog-post',function(){return view('blog-post');})->name('blog');
+Route::get('/blog','BlogPageController@indexArticlesBlog')->name('blog');
+Route::get('/blog-post','BlogPageController@indexArticlesView')->name('article');
 Auth::routes();
 
 //Admin Blade
@@ -24,6 +25,9 @@ Auth::routes();
 Route::get('/adminHome', 'HomeController@index')->name('home');
 Route::get('/adminValidation','HomeController@indexValidationPost');
 Route::get('/homeEdit','HomeController@indexHomeEdit');
+Route::get('/mesArticles','HomeController@indexMesArticles');
+Route::get('/monArticle/{id}','HomeController@indexMonArticle');
+Route::get('/editArticle/{id}','ArticleController@edit');
 
 //Create Admin Page
 Route::get('/imageBackground', 'HomeController@indexHomeImageBG');
@@ -53,8 +57,11 @@ Route::post('/addBackground','HomeBackgroundController@create');
 Route::post('/createTesti','TestimonialController@create');
 Route::post('/createServiceOk','ServiceController@create');
 Route::post('/createArticles','ArticleController@create');
+Route::post('/updateArticles/{id}','ArticleController@update');
 Route::post('/createUser','UserController@create');
 Route::post('/createProject','ProjectController@create');
+Route::post('/validate/{id}','ArticleController@validation');
+Route::post('/deleteArticle/{id}','ArticleController@destroy');
 
 
 //Edite-Home Page

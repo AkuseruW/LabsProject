@@ -39,4 +39,7 @@ class User extends Authenticatable
     public function imageUsers(){
         return $this->belongsTo('App\Image', 'image_user');
     }
+    public function articlesUser(){
+        return $this->hasMany(Article::class); // ou App\Tag
+    }
 }

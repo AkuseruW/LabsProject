@@ -60,7 +60,7 @@
 
     </div>
     <div class="text-center">
-        <button class="btn btn-lg">Create User</button>
+        <button class="btn btn-lg">Save User</button>
     </div>
 </form>
 </section>

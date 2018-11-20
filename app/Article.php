@@ -12,4 +12,18 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class); // ou App\Tag
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Categorie::class); // ou App\Categorie
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
+    public function roles()
+    {
+        return $this->belongsTo('App\Image','');
+    }
 }

@@ -18,6 +18,9 @@ class CreateArticlesTable extends Migration
             $table->string('name');
             $table->text('content');
             $table->timestamps();
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->boolean('validation')->default(0);
         });
     }
 

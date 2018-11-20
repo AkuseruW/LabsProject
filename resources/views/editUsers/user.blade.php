@@ -108,7 +108,7 @@
 </section>
 
 <section class="container mt-5">
-    <form action="/createUser" method="post">
+    <form action="/createUser" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <h3>Name</h3>
@@ -156,6 +156,9 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="text-center">
+                <input type="file" name="image" id="">
             </div>
 
         </div>
