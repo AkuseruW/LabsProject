@@ -20,13 +20,6 @@ class CreateTagsTable extends Migration
             $table->timestamps();
             $table->boolean('validation')->default(0);
         });
-
-        // Schema::create('article_tag', function (Blueprint $table) {
-        //     $table->integer('article_id')->unsigned()->index()->nullable();
-        //     $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
-        //     $table->integer('tag_id')->unsigned()->index()->nullable();
-        //     $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-        // });
     }
 
     /**

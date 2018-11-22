@@ -38,15 +38,9 @@ class HomeController extends Controller
     public function index()
     {
         $positions = Position::all();
-        $admin = User::find([1]);
-        $articles = Article::all();
-        $users = User::all()->where('id', '>', '1')->random(1);
-        $users2 = User::all()->where('id', '>', '1')->random(1);
+        $articles = Article::orderBy('created_at')->where('validation','=','0')->paginate(10);
 
-        // if ($users2->id != $users->id) {
-        // }
-
-        return view('administration/adminHome',compact('admin','users','positions','users2','articles'));
+        return view('administration/adminHome',compact('articles'));
     }
 
     public function indexValidationPost()

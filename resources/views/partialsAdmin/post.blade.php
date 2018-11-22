@@ -2,7 +2,7 @@
     <div class="row">
 
         <div class="col-md-12">
-            <h4>Post en attente de validation</h4>
+            <h4><span class="text-danger">ARTICLE</span> en attente de validation !</h4>
             <div class="table-responsive">
 
                 <table id="mytable" class="table mt-5 table-bordred table-striped">
@@ -16,7 +16,7 @@
                         <th class="text-center">Delete</th>
                     </thead>
                     @foreach ($articles as $article)
-                    @if ($article->validation == 0)
+                    {{-- @if ($article->validation == 0) --}}
                     {{-- <form action="/validate/{{ $article->id }}" method="post"> --}}
                         @csrf
                         <tbody>
@@ -44,6 +44,7 @@
                             </tr>
                         </tbody>
                     </form>
+
                     <div class="modal fade" id="validate{{ $article->id }}" tabindex="-1" role="dialog" aria-labelledby="edit"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -60,7 +61,6 @@
                                         want to validate this ?</div>
 
                                 </div>
-
                                 <div class="modal-footer ">
                                     {{ $article->id }}
                                     <form action="/validate/{{ $article->id }}" method="POST">
@@ -102,9 +102,11 @@
                         </div>
                         <!-- /.modal-dialog -->
                     </div>
-                    @endif
+
+                    {{-- @endif --}}
                     @endforeach
                 </table>
+                {{ $articles->links() }}
             </div>
 
         </div>

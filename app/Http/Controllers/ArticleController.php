@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
-
     public function validation(Request $request, $id){
         $articles = Article::find($id);
 
@@ -66,10 +65,11 @@ class ArticleController extends Controller
         $users = User::all();
         $articles -> name = $request -> titreArticle;
         $articles -> content = $request -> descriptionArticle;
+        $articles -> limitecontent = str_limit($request->descriptionArticle,250);
 
         //IMAGE
         if ($request->imageArticle) {
-            $image = New Image;
+            $image = new Image;
             $image->url = $request->imageArticle;
             $image->save();
         }
@@ -131,6 +131,7 @@ class ArticleController extends Controller
         $users = User::all();
         $articles -> name = $request -> titreArticle;
         $articles -> content = $request -> descriptionArticle;
+        $articles -> limitecontent = str_limit($request->descriptionArticle,250);
 
         if ($request->imageArticle) {
             $image = New Image;
@@ -144,9 +145,6 @@ class ArticleController extends Controller
         //TAGS
 
         if ($request->newTags == null) {
-            // $articles->tags()->sync();
-            // foreach ($request->tags as $value) {
-            // }
             $articles->tags()->sync($request->tags);
         }
         else {

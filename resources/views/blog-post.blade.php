@@ -7,22 +7,22 @@
 	<meta name="keywords" content="lab, onepage, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->
-	<link href="img/favicon.ico" rel="shortcut icon"/>
+	<link href="/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,600" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/flaticon.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="/css/flaticon.css"/>
+	<link rel="stylesheet" href="/css/owl.carousel.css"/>
+	<link rel="stylesheet" href="/css/style.css"/>
 
 
 	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	  <script src="/https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
 </head>
@@ -30,7 +30,7 @@
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader">
-			<img src="img/logo.png" alt="">
+			<img src="/img/logo.png" alt="">
 			<h2>Loading.....</h2>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="logo">
-			<img src="img/logo.png" alt=""><!-- Logo -->
+			<img src="/img/logo.png" alt=""><!-- Logo -->
 		</div>
 		<!-- Navigation -->
 		<div class="responsive"><i class="fa fa-bars"></i></div>
@@ -71,7 +71,7 @@
 	</div>
 	<!-- Page header end-->
 
-@foreach ($articles as $article)
+{{-- @foreach ($articles as $article) --}}
 
 	<!-- page section -->
 	<div class="page-section spad">
@@ -81,7 +81,7 @@
 					<!-- Single Post -->
 					<div class="single-post">
 						<div class="post-thumbnail">
-							<img src="img/blog/blog-1.jpg" alt="">
+							<img src="/img/blog/blog-1.jpg" alt="">
 							<div class="post-date">
 								<h2>{{ $article->created_at->format('d') }}</h2>
 								<h3>{{ $article->created_at->format('M y') }}</h3>
@@ -94,16 +94,14 @@
                                 @foreach ($article->tags as $tag)
                                 <a href="">{{ $tag->name }}</a>
                                 @endforeach
-								{{-- <a href="">2 Comments</a> --}}
+								<a href="">{{ count($article->commentaires) }} Comments</a>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Phasellus vestibulum, quam tincidunt venenatis ultrices, est libero mattis ante, ac consectetur diam neque eget quam. Etiam feugiat augue et varius blandit. Praesent mattis, eros a sodales commodo.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venenatis ultrices, est libero mattis ante, ac consectetur diam neque eget quam. Etiam feugiat augue et varius blandit. Praesent mattis, eros a sodales commodo, justo ipsum rutrum mauris, sit amet egestas metus quam sed dolor. Sed consectetur, dui sed sollicitudin eleifend, arcu neque egestas lectus, sagittis viverra justo massa ut sapien. Aenean viverra ornare mauris eget lobortis. Cras vulputate elementum magna, tincidunt pharetra erat condimentum sit amet. Maecenas vitae ligula pretium, convallis magna eu, ultricies quam. In hac habitasse platea dictumst. </p>
-							<p>Fusce vel tempus nunc. Phasellus et risus eget sapien suscipit efficitur. Suspendisse iaculis purus ornare urna egestas imperdiet. Nulla congue consectetur placerat. Integer sit amet auctor justo. Pellentesque vel congue velit. Sed ullamcorper lacus scelerisque condimentum convallis. Sed ac mollis sem. </p>
+							{!! $article->content !!}
 						</div>
 						<!-- Post Author -->
 						<div class="author">
 							<div class="avatar">
-								<img src="img/avatar/03.jpg" alt="">
+								<img src="/img/avatar/03.jpg" alt="">
 							</div>
 							<div class="author-info">
 								<h2>{{ $article->user->name }}, <span>Author</span></h2>
@@ -112,34 +110,27 @@
 						</div>
 						<!-- Post Comments -->
 						<div class="comments">
-							<h2>Comments (2)</h2>
+							<h2>Comments ({{ count($article->commentaires) }})</h2>
 							<ul class="comment-list">
+                                @foreach ($article->commentaires as $commentaires)
 								<li>
 									<div class="avatar">
-										<img src="img/avatar/01.jpg" alt="">
+										<img src="/img/avatar/01.jpg" alt="">
 									</div>
 									<div class="commetn-text">
-										<h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-										<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
+										<h3>{{ $commentaires->name }} | {{ $article->created_at->format('d M, Y ') }}| Reply</h3>
+										<p>{{ $commentaires->message }}</p>
 									</div>
 								</li>
-								<li>
-									<div class="avatar">
-										<img src="img/avatar/02.jpg" alt="">
-									</div>
-									<div class="commetn-text">
-										<h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-										<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
-									</div>
-								</li>
+                                @endforeach
 							</ul>
                         </div>
-
 						<!-- Commert Form -->
 						<div class="row">
 							<div class="col-md-9 comment-from">
 								<h2>Leave a comment</h2>
-								<form class="form-class">
+                                <form class="form-class" action="/sendComment/{{ $article->id }}" method="POST">
+                                    @csrf
 									<div class="row">
 										<div class="col-sm-6">
 											<input type="text" name="name" placeholder="Your name">
@@ -150,7 +141,7 @@
 										<div class="col-sm-12">
 											<input type="text" name="subject" placeholder="Subject">
 											<textarea name="message" placeholder="Message"></textarea>
-											<button class="site-btn">send</button>
+											<button class="site-btn" type="submit">send</button>
 										</div>
 									</div>
 								</form>
@@ -159,73 +150,13 @@
 					</div>
 				</div>
 				<!-- Sidebar area -->
-				<div class="col-md-4 col-sm-5 sidebar">
-					<!-- Single widget -->
-					<div class="widget-item">
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search" name="search">
-							<button class="search-btn"><i class="flaticon-026-search"></i></button>
-						</form>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Categories</h2>
-						<ul>
-							<li><a href="#">Vestibulum maximus</a></li>
-							<li><a href="#">Nisi eu lobortis pharetra</a></li>
-							<li><a href="#">Orci quam accumsan </a></li>
-							<li><a href="#">Auguen pharetra massa</a></li>
-							<li><a href="#">Tellus ut nulla</a></li>
-							<li><a href="#">Etiam egestas viverra </a></li>
-						</ul>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Instagram</h2>
-						<ul class="instagram">
-							<li><img src="img/instagram/1.jpg" alt=""></li>
-							<li><img src="img/instagram/2.jpg" alt=""></li>
-							<li><img src="img/instagram/3.jpg" alt=""></li>
-							<li><img src="img/instagram/4.jpg" alt=""></li>
-							<li><img src="img/instagram/5.jpg" alt=""></li>
-							<li><img src="img/instagram/6.jpg" alt=""></li>
-						</ul>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Tags</h2>
-						<ul class="tag">
-							<li><a href="">branding</a></li>
-							<li><a href="">identity</a></li>
-							<li><a href="">video</a></li>
-							<li><a href="">design</a></li>
-							<li><a href="">inspiration</a></li>
-							<li><a href="">web design</a></li>
-							<li><a href="">photography</a></li>
-						</ul>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Quote</h2>
-						<div class="quote">
-							<span class="quotation">‘​‌‘​‌</span>
-							<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. Sed lacinia turpis at ultricies vestibulum.</p>
-						</div>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Add</h2>
-						<div class="add">
-							<a href=""><img src="img/add.jpg" alt=""></a>
-						</div>
-					</div>
-				</div>
+				@include('partials/sidebar')
 			</div>
 		</div>
 	</div>
     <!-- page section end-->
-    
-    @endforeach
+
+    {{-- @endforeach --}}
 
 	<!-- newsletter section -->
 	<div class="newsletter-section spad">
@@ -256,8 +187,9 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>
+

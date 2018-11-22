@@ -15,6 +15,7 @@ class PageServiceController extends Controller
         $serviceNoRandom = Service::all();
         $services = Service::all()->random(3);
         $projects = Project::orderBy('id', 'DESC')->take(6)->get()->reverse();
-        return view ('services',compact('services','serviceNoRandom','projects'));
+        $projectsTrois = Project::orderBy('id', 'DESC')->take(3)->get();
+        return view ('services',compact('services','serviceNoRandom','projects','projectsTrois'));
     }
 }

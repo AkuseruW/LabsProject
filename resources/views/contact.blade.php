@@ -19,7 +19,6 @@
 	<link rel="stylesheet" href="css/owl.carousel.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 
-
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -45,11 +44,11 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li><a href="home.html">Home</a></li>
-				<li><a href="services.html">Services</a></li>
-				<li><a href="blog.html">Blog</a></li>
-				<li class="active"><a href="contact.html">Contact</a></li>
-				<li><a href="elements.html">Elements</a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="services">Services</a></li>
+				<li><a href="blog">Blog</a></li>
+				<li class="active"><a href="contact">Contact</a></li>
+				{{-- <li><a href="elements">Elements</a></li> --}}
 			</ul>
 		</nav>
 	</header>
@@ -63,7 +62,7 @@
 			<div class="page-info">
 				<h2>Contact</h2>
 				<div class="page-links">
-					<a href="#">Home</a>
+					<a href="/">Home</a>
 					<span>Contact</span>
 				</div>
 			</div>

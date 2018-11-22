@@ -18,6 +18,11 @@ class Article extends Model
         return $this->belongsToMany(Categorie::class); // ou App\Categorie
     }
 
+    public function commentaires()
+    {
+        return $this->belongsToMany(Commentaire::class); // ou App\Categorie
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User','user_id');
@@ -26,4 +31,9 @@ class Article extends Model
     {
         return $this->belongsTo('App\Image','');
     }
+    public function tagArticle()
+    {
+        return $this->hasMany('App\Article_tag');
+    }
+
 }

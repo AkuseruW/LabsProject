@@ -17,7 +17,7 @@ Route::get('/services', 'PageServiceController@index')->name('services');
 Route::get('/project','ProjectController@index');
 Route::get('/contact',function(){return view('contact');})->name('contact');
 Route::get('/blog','BlogPageController@indexArticlesBlog')->name('blog');
-Route::get('/blog-post','BlogPageController@indexArticlesView')->name('article');
+Route::get('/blog-post/{id}','BlogPageController@indexArticlesView')->name('article');
 Auth::routes();
 
 //Admin Blade
@@ -62,6 +62,16 @@ Route::post('/createUser','UserController@create');
 Route::post('/createProject','ProjectController@create');
 Route::post('/validate/{id}','ArticleController@validation');
 Route::post('/deleteArticle/{id}','ArticleController@destroy');
+Route::post('/sendComment/{id}','CommentaireController@create');
+Route::post('/sendMail','MailController@store');
+Route::post('/search','BlogPageController@searchArticle');
+Route::get('/searchViaTag/{id}/','BlogPageController@searchArticleTag');
+Route::get('/searchViaCategorie/{id}/','BlogPageController@searchArticleCategorie');
+
+
+
+
+
 
 
 //Edite-Home Page

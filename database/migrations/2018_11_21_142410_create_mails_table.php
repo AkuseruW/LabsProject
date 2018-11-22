@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCommentairesToPostsTable extends Migration
+class CreateMailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class AddCommentairesToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedInteger('commentaire_post')->nullable();
-            $table->foreign('commentaire_post')->references('id')->on('posts');
+        Schema::create('mails', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email');
+            $table->text('message');
+            $table->timestamps();
         });
-
     }
 
     /**
@@ -27,8 +29,6 @@ class AddCommentairesToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('mails');
     }
 }
