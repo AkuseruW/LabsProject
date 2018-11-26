@@ -64,6 +64,7 @@ class HomeController extends Controller
     public function indexHomeImageBG()
     {
         $tasks = HomeBackground::all();
+        // dd($tasks);
         return view('homePageTask/imageBackground',compact('tasks'));
     }
 

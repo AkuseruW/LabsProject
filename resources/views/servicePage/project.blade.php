@@ -8,12 +8,12 @@
 
 @section('content')
 
-<form action="/createProject" method="post">
+<form action="/createProject" method="post" enctype="multipart/form-data">
     @csrf
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <input class="form-control form-control-lg" name="nameProject" type="text">
+                <input class="form-control form-control-lg" name="nameProject" type="text" required>
             </div>
             <div class="col-6">
                 <select class="form-control form-control-lg" name="iconeProject" id="">
@@ -24,10 +24,10 @@
             </div>
         </div>
         <div class="mt-4">
-            <textarea class="form-control form-control-lg" name="descriptionProject" id="" cols="30" rows="10"></textarea>
+            <textarea class="form-control form-control-lg" name="descriptionProject" id="" cols="30" rows="10" required></textarea>
         </div>
         <div class="text-center mt-3">
-            <input type="file" name="imageProject" class="" id="">
+            <input type="file" name="imageProject" required>
         </div>
         <div class="text-center"><button class="btn btn-lg mt-3">Create</button></div>
     </div>

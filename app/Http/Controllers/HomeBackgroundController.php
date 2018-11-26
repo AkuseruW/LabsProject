@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\HomeBackground;
 use Illuminate\Http\Request;
+use ImageIntervention;
+use Storage;
 
 class HomeBackgroundController extends Controller
 {
@@ -24,10 +26,23 @@ class HomeBackgroundController extends Controller
      */
     public function create(request $request)
     {
-        $path = $request->file('background')->store('public');
-        $tasks = new HomeBackground;
-        $tasks->image = $path;
-        $tasks->save();
+
+        $image = $request->background;
+
+        $filename = time().$image->hashName();
+
+        //resize
+        $redimension = ImageIntervention::make($image)->resize(1838, 548, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save();
+        Storage::put('public/img/redimensionner/'.$filename,$redimension);
+
+        //envoi DB
+        $table = new HomeBackground;
+        $table->image = $filename;
+
+        $table->save();
+
         return redirect()->back();
     }
 
@@ -71,19 +86,34 @@ class HomeBackgroundController extends Controller
      * @param  \App\HomeBackground  $homeBackground
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HomeBackground $homeBackground)
+    public function update(Request $request,$id)
     {
-        //
+        $table=HomeBackground::find($id);
+
+        $image = $request->background;
+
+        $filename = time().$image->hashName();
+        // Storage::delete(['file', 'otherFile']);
+        //resize
+        $redimension = ImageIntervention::make($image)->resize(1838, 548, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save();
+        Storage::put('public/img/redimensionner/'.$filename,$redimension);
+
+        //envoi DB
+        $table->image = $filename;
+        $table->save();
+
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\HomeBackground  $homeBackground
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(HomeBackground $homeBackground)
+
+    public function destroy($id)
     {
-        //
+        $image=HomeBackground::find($id);
+        dd($image);
+        $image->delete();
+
+        return redirect()->back()->with('success','User delete !');
     }
 }

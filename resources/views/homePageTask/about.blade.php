@@ -34,7 +34,7 @@
 
             @csrf
 
-            <textarea name="editor" id="editor1" rows="10" cols="80">
+            <textarea name="editor" id="editor1" rows="10" cols="80" required>
                     @foreach ($text as $txt)
                     {{ $txt -> text }}
                     @endforeach

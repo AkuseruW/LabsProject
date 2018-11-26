@@ -9,6 +9,7 @@ use App\TextEditor;
 use App\User;
 use App\Icone;
 use App\Testimonial;
+use App\HomeBackground;
 
 class PageHomeController extends Controller
 {
@@ -21,8 +22,9 @@ class PageHomeController extends Controller
         $video = VideoHomePage::all();
         $text = TextEditor::all();
         $admin = User::find([1]);
-        $users = User::all()->where('id', '>', '1')->random(1);
-        $users2 = User::all()->where('id', '>', '1', '&&', 'id', '!=', 'users' )->random(1);
-        return view ('home',compact('services','serviceNoRandom','video','text','admin','users','users2','icones','testimonials'));
+        $users = User::all()->where('id', '>', '1', '&&', 'positions_id', '!=', 'Null')->random(1);
+        // $users2 = User::all()->where('id', '>', '1', '&&', 'id', '!=', 'users' )->random(1);
+        $imgBackground = HomeBackground::all();
+        return view ('home',compact('services','serviceNoRandom','video','text','admin','users','users2','icones','testimonials','imgBackground'));
     }
 }

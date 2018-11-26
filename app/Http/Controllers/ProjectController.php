@@ -6,6 +6,7 @@ use App\Project;
 use App\Icone;
 use App\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -28,16 +29,18 @@ class ProjectController extends Controller
      */
     public function create(Request $request)
     {
+
         $projects = new Project;
         $projects->titre = $request->nameProject;
         $projects->description = $request->descriptionProject;
         $projects->icones_Project = $request->iconeProject;
 
-        if ($request->imageProject) {
-            $image = new Image;
-            $image->url = $request->imageProject;
-            $image->save();
-        }
+        $image = new Image;
+        $path = $request->file('imageProject')->store('public');
+        $image->url = $path;
+        $image->save();
+
+
         $projects->image_id = $image->id;
         $projects->save();
         return redirect()->back()->with('success','Nouveau projects creer');

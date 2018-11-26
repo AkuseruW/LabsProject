@@ -8,6 +8,7 @@ use App\Role;
 use App\Position;
 use Validator;
 use ImageIntervention;
+use Storage;
 use App\Image;
 use Illuminate\Support\Facades\Hash;
 
@@ -51,11 +52,10 @@ class UserController extends Controller
         $users->password = Hash::make($request->password);
         $users->roles_id = $request->role;
 
-
-        if ($request->newPos == null) {
+        if ($request->newPos == null && $request->position != 1) {
             $users->positions_id = $request->position;
         }
-        elseif ($request->position == 1) {
+        elseif ($request->newPos == null) {
             $users->positions_id = NULL;
         }
         else {
@@ -69,28 +69,19 @@ class UserController extends Controller
 
 
         if ($request->image == true) {
-
             $image = $request->image;
 
             $filename = time().$image->hashName();
 
-            // taille de base
-            $tailleDeBase = ImageIntervention::make($image);
-            $tailleDeBase->save('img/originals/'.$filename);
-
             //resize
-            $redimension = ImageIntervention::make($image)->resize(300, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-
-            $redimension->save('img/redimensionner/'.$filename);
+            $redimension = ImageIntervention::make($image)->resize(360, 448)->save();
+            Storage::put('public/img/redimensionner/'.$filename,$redimension);
 
             //envoi DB
             $table = new Image;
             $table->url = $filename;
 
             $table->save();
-
         }
 
         $users->image_user = $table->id;
@@ -128,7 +119,21 @@ class UserController extends Controller
 
             $users->positions_id = $position->id;
         }
+        if ($request->image == true) {
+            $image = $request->image;
 
+            $filename = time().$image->hashName();
+
+            //resize
+            $redimension = ImageIntervention::make($image)->resize(360, 448)->save();
+            Storage::put('public/img/redimensionner/'.$filename,$redimension);
+
+            //envoi DB
+            $table = new Image;
+            $table->url = $filename;
+
+            $table->save();
+        }
         $users->save();
         return redirect('/user')->with('success','User update !');
     }

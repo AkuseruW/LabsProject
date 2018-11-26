@@ -12,7 +12,6 @@
             <li class="active"><a href="/services">Services</a></li>
             <li><a href="/blog">Blog</a></li>
             <li><a href="/contact">Contact</a></li>
-            {{-- <li><a href="elements.html">Elements</a></li> --}}
         </ul>
     </nav>
 </header>
@@ -59,7 +58,7 @@
 
         </div>
         <div class="text-center">
-            <a href="" class="site-btn">Browse</a>
+                {{ $serviceNoRandom->links() }}
         </div>
     </div>
 </div>
@@ -130,7 +129,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="sv-card">
                     <div class="card-img">
-                        <img src="img/card-1.jpg" alt="">
+                        <img src="{{ Storage::url($projectTrois->imageProject->url) }}" alt="">
                     </div>
                     <div class="card-text">
                         <h2>{{ $projectTrois->titre }}</h2>
@@ -147,25 +146,10 @@
 
 
 <!-- newsletter section -->
-<div class="newsletter-section spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <h2>Newsletter</h2>
-            </div>
-            <div class="col-md-9">
-                <!-- newsletter form -->
-                <form class="nl-form">
-                    <input type="text" placeholder="Your e-mail here">
-                    <button class="site-btn btn-2">Newsletter</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+@include('partials.newsletter')
 <!-- newsletter section end-->
 
 
 <!-- Contact section -->
-@include('partials/contact')
+@include('partials.contact')
 <!-- Contact section end-->

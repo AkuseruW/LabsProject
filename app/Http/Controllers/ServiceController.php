@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Service;
 use App\Icone;
 use Validator;
+use App\Project;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -16,11 +17,14 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $serviceNoRandom = Service::all();
-        $services = Service::all()->random(3);
-        $projects = Project::orderBy('id', 'DESC')->take(6)->get()->reverse();
-        $projectsTrois = Project::orderBy('id', 'DESC')->take(3)->get();
-        return view ('services',compact('services','serviceNoRandom','projects','projectsTrois'));
+        // $projects = Project::all();
+        // $icones = Icone::all();
+        // return view('servicePage/project',compact('projects','icones'));
+        // $serviceNoRandom = Service::all();
+        // $services = Service::all()->random(3);
+        // $projects = Project::orderBy('id', 'DESC')->take(6)->get()->reverse();
+        // $projectsTrois = Project::orderBy('id', 'DESC')->take(3)->get();
+        // return view ('homePageTask/service',compact('services','serviceNoRandom','projects','projectsTrois'));
     }
 
     /**

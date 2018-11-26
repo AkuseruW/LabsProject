@@ -1,4 +1,4 @@
-@extends('layouts.BlogSearch')
+@extends('layouts.blogSearchSansId')
 <!-- Page header -->
 <div class="page-top-section">
     <div class="overlay"></div>

@@ -32,7 +32,7 @@ Route::get('/editArticle/{id}','ArticleController@edit');
 //Create Admin Page
 Route::get('/imageBackground', 'HomeController@indexHomeImageBG');
 Route::get('/testimonial', 'HomeController@indexHomeTestimonial');
-Route::get('/service', 'ServiceController@index');
+Route::get('/service', 'ProjectController@index');
 Route::get('/myService', 'HomeController@indexHomeService');
 Route::get('/video', 'HomeController@indexHomeVideo');
 Route::get('/about', 'HomeController@indexHomeAbout');
@@ -44,11 +44,11 @@ Route::get('/myProject','HomeController@indexMyProject');
 
 //Delete Admin Page
 Route::post('/deleteUser/{id}','UserController@destroy');
-
+Route::post('/deleteBackground/{id}','HomeBackgroundController@destroy');
 //Edit/Update
 Route::get('/editUser/{id}','UserController@edit');
 Route::post('/updateUser/{id}','UserController@update');
-
+Route::post('/updateBackground/{id}','HomeBackgroundController@update');
 
 //Create Adimn function
 

@@ -27,8 +27,10 @@
     </div>
     <!-- slider -->
     <div id="hero-slider" class="owl-carousel">
-        <div class="item  hero-item" data-bg="img/01.jpg"></div>
-        <div class="item  hero-item" data-bg="img/02.jpg"></div>
+        @foreach ($imgBackground as $img)
+        <div class="item  hero-item" data-bg="{{ Storage::url('img/redimensionner/'.$img->image) }}"></div>
+        @endforeach
+        {{-- <div class="item  hero-item" data-bg="img/02.jpg"></div> --}}
     </div>
 </div>
 <!-- Intro Section -->
@@ -185,8 +187,9 @@
 
             <div class="col-sm-4">
                 <div class="member">
-                    <img src="img/team/{{ $users[0]->imageUsers->url }}" alt="">
+                    <img src="{{ Storage::url('img/redimensionner/'.$users[0]->imageUsers->url) }}" alt="">
                     <h2>{{ $users[0]->name }}</h2>
+                    {{ dd($users[0]->positions) }}
                     <h3>{{ $users[0]->positions->name }}</h3>
                 </div>
             </div>
@@ -196,15 +199,15 @@
                 <div class="member">
                     <img src="img/team/{{ $admin[0]->imageUsers->url }}" alt="">
                     <h2>{{ $admin[0]->name }}</h2>
-                    <h3>{{ $admin[0]->positions->name }}</h3>
+                    {{-- <h3>{{ $admin[0]->positions->name }}</h3> --}}
                 </div>
             </div>
             <!-- single member -->
             <div class="col-sm-4">
                 <div class="member">
-                    <img src="img/team/{{ $users2[0]->imageUsers->url }}" alt="">
+                    <img src="{{ Storage::url('img/redimensionner/'.$users2[0]->imageUsers->url) }}" alt="">
                     <h2>{{ $users2[0]->name }}</h2>
-                    <h3>{{ $users2[0]->positions->name }}</h3>
+                    {{-- <h3>{{ $users2[0]->positions->name }}</h3> --}}
                 </div>
             </div>
         </div>

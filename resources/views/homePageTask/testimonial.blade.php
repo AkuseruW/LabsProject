@@ -37,25 +37,25 @@
             <div class="row">
                 <div class="pt-2 pb-2 col-6">
                     <h4>Nom</h4>
-                    <input class="form-control form-control-lg" name="name" type="text">
+                    <input class="form-control form-control-lg" name="name" type="text" required>
                 </div>
 
                 <div class="pt-2 pb-2 col-6">
                     <h4>Fonction</h4>
-                    <input class="form-control form-control-lg" name="fonction" type="text">
+                    <input class="form-control form-control-lg" name="fonction" type="text" required>
                 </div>
             </div>
 
 
             <div class="pb-2">
                 <h4>Avis</h4>
-                <textarea class="form-control form-control-lg" name="avis" id="" cols="30" rows="10">
+                <textarea class="form-control form-control-lg" name="avis" id="" cols="30" rows="10" required>
 
                 </textarea>
             </div>
 
             <div class="pt-2 pb-2 text-center">
-                <input type="file" name="image" id="">
+                <input type="file" name="image" id="" required>
             </div>
 
             <div class="text-center">

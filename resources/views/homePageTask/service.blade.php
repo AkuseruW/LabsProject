@@ -39,7 +39,7 @@
                     <div class="col-6">
                         <div class="pb-3">
                             <h4>Titre</h4>
-                            <input class="form-control form-control-lg" name="titreService" type="text">
+                            <input class="form-control form-control-lg" name="titreService" type="text" required>
                         </div>
                     </div>
                     <div class="col-6">
@@ -61,7 +61,7 @@
 
                 <div class="pb-3">
                     <h4>Description</h4>
-                    <textarea class="form-control form-control-lg" name="descriptionService" id="" cols="30" rows="10">
+                    <textarea class="form-control form-control-lg" name="descriptionService" id="" cols="30" rows="10" required>
 
                     </textarea>
                 </div>
@@ -71,7 +71,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </divr
 
 
 </div>

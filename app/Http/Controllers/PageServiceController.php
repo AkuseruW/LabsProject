@@ -12,7 +12,7 @@ class PageServiceController extends Controller
 {
     public function index()
     {
-        $serviceNoRandom = Service::all();
+        $serviceNoRandom = Service::orderBy('id')->paginate(9);
         $services = Service::all()->random(3);
         $projects = Project::orderBy('id', 'DESC')->take(6)->get()->reverse();
         $projectsTrois = Project::orderBy('id', 'DESC')->take(3)->get();
