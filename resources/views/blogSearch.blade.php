@@ -51,7 +51,7 @@
             </div>
             @endif
             <!-- Sidebar area -->
-            @include('partials/sidebar')
+            @include('partials/sidebarSearch')
         </div>
     </div>
 </div>

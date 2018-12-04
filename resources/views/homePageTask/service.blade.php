@@ -71,7 +71,7 @@
                 </div>
             </form>
         </div>
-    </divr
+    </div>
 
 
 </div>

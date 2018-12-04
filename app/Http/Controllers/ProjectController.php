@@ -7,6 +7,7 @@ use App\Icone;
 use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProjectValidation;
 
 class ProjectController extends Controller
 {
@@ -17,9 +18,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin');
         $projects = Project::all();
         $icones = Icone::all();
-        return view('servicePage/project',compact('projects','icones'));
+        return view('servicePage/project', compact('projects', 'icones'));
     }
 
     /**
@@ -27,9 +29,9 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(ProjectValidation $request)
     {
-
+        $this->authorize('admin');
         $projects = new Project;
         $projects->titre = $request->nameProject;
         $projects->description = $request->descriptionProject;
@@ -43,7 +45,7 @@ class ProjectController extends Controller
 
         $projects->image_id = $image->id;
         $projects->save();
-        return redirect()->back()->with('success','Nouveau projects creer');
+        return redirect()->back()->with('success', 'Nouveau projects creer');
     }
 
     /**
@@ -86,9 +88,24 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(ProjectValidation $request, $id)
     {
-        //
+        $this->authorize('admin');
+        $projects = Project::find($id);
+        $projects->titre = $request->nameProject;
+        $projects->description = $request->descriptionProject;
+        $projects->icones_Project = $request->iconeProject;
+
+        if ($request->imageProject) {
+            $image = new Image;
+            $path = $request->file('imageProject')->store('public');
+            $image->url = $path;
+            $image->save();
+            $projects->image_id = $image->id;
+        }
+
+        $projects->save();
+        return redirect()->back()->with('success', 'Nouveau projects creer');
     }
 
     /**
@@ -97,8 +114,12 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        //
+        $this->authorize('admin');
+        $project = Project::find($id);
+        $project->delete();
+
+        return redirect()->back();
     }
 }

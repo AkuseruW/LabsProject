@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Testimonial;
+use ImageIntervention;
+use Storage;
 use Illuminate\Http\Request;
+use App\Http\Requests\TestimonialValidation;
+
 
 class TestimonialController extends Controller
 {
@@ -22,13 +26,22 @@ class TestimonialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(TestimonialValidation $request)
     {
-        $testimonial = New Testimonial;
+        $testimonial = new Testimonial;
         $testimonial->avis = $request->avis;
         $testimonial->name = $request->name;
         $testimonial->function = $request->fonction;
-        $testimonial->image = $request->image;
+
+        $image = $request->image;
+
+        $filename = time() . $image->hashName();
+        //resize
+        $redimension = ImageIntervention::make($image)->resize(60, 60)->save();
+        Storage::put('public/img/testimonialImage/' . $filename, $redimension);
+        //envoi DB
+        $testimonial->image = $filename;
+
         $testimonial->save();
         return redirect()->back();
     }
@@ -73,9 +86,26 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testimonial $testimonial)
+    public function update(TestimonialValidation $request, $id)
     {
-        //
+        $testimonial = Testimonial::find($id);
+        $testimonial->avis = $request->avis;
+        $testimonial->name = $request->name;
+        $testimonial->function = $request->fonction;
+
+        if ($request->image) {
+            $image = $request->image;
+
+            $filename = time() . $image->hashName();
+            //resize
+            $redimension = ImageIntervention::make($image)->resize(60, 60)->save();
+            Storage::put('public/img/testimonialImage/' . $filename, $redimension);
+            //envoi DB
+            $testimonial->image = $filename;
+        }
+
+        $testimonial->save();
+        return redirect()->back();
     }
 
     /**
@@ -84,8 +114,11 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonial $testimonial)
+    public function destroy($id)
     {
-        //
+        $testimonial = Testimonial::find($id);
+        $testimonial->delete();
+
+        return redirect('/testimonial')->with('success', 'Testimonial delete !');
     }
 }

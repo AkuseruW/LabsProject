@@ -112,7 +112,7 @@
         </div>
     </div>
     <div class="text-center mt100">
-        <a href="" class="site-btn">Browse</a>
+        <a href="#contact" class="site-btn">Browse</a>
     </div>
 </div>
 </div>
@@ -129,6 +129,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="sv-card">
                     <div class="card-img">
+                    
                         <img src="{{ Storage::url($projectTrois->imageProject->url) }}" alt="">
                     </div>
                     <div class="card-text">

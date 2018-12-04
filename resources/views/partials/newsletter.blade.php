@@ -6,8 +6,9 @@
             </div>
             <div class="col-md-9">
                 <!-- newsletter form -->
-                <form class="nl-form">
-                    <input type="text" placeholder="Your e-mail here">
+                <form class="nl-form" action="/newsletter" method="POST">
+                    @csrf
+                    <input type="text" name="new" placeholder="Your e-mail here">
                     <button class="site-btn btn-2">Newsletter</button>
                 </form>
             </div>

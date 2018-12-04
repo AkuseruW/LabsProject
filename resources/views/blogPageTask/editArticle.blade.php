@@ -20,7 +20,12 @@
                 <h3>Default Categorie</h3>
                 <div class="row">
                     <div class="col-11" style="padding-right:0">
-                        <select class="form-control" name="categories" id="">
+                        {{-- <select class="form-control" name="categories" id="">
+                            @foreach ($categories as $key => $categorie)
+                            <option value="{{ $categorie->id }}">{{$categorie->name}}</option>
+                            @endforeach
+                        </select> --}}
+                        <select class="form-control js-example-basic-multiple" name="categories">
                             @foreach ($categories as $key => $categorie)
                             <option value="{{ $categorie->id }}">{{$categorie->name}}</option>
                             @endforeach
@@ -37,24 +42,17 @@
                 <h3>Default Tag</h3>
                 <div class="row">
                     <div class="col-11" style="padding-right:0">
-                        <div class="form-check">
+                        <select class="form-control js-example-basic-multiple" name="tags[]" multiple="multiple">
                             @foreach ($tags as $key => $tag)
-                            <div class="d-inline-flex mx-3">
-
-                                <input class="form-check-input" name="tags[]" type="checkbox" id="defaultCheck1" value="{{ $tag->id }}">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    {{$tag->name}}
-                                </label>
-                            </div>
+                            <option value="{{ $tag->id }}">{{$tag->name}}</option>
                             @endforeach
-                        </div>
+                        </select>
                         <input class="form-control slide" name="newTags" type="text" placeholder="Create New Position">
                     </div>
                     <div class="col-1" style="padding:0">
                         <button type="button" class="btn js-toggles">+</button>
                     </div>
                 </div>
-
 
             </div>
         </div>
@@ -142,6 +140,9 @@
         $('.slide').toggleClass('active');
     });
 
+    $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+    });
 </script>
 
 @stop

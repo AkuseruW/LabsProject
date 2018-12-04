@@ -38,9 +38,11 @@ class HomeController extends Controller
     public function index()
     {
         $positions = Position::all();
-        $articles = Article::orderBy('created_at')->where('validation','=','0')->paginate(10);
+        $articles = Article::orderBy('created_at')->where('validation', '=', '0')->paginate(10);
+        $tags = Tag::orderBy('created_at')->where('validation', '=', '0')->paginate(10);
+        $categories = Categorie::orderBy('created_at')->where('validation', '=', '0')->paginate(10);
 
-        return view('administration/adminHome',compact('articles'));
+        return view('administration/adminHome', compact('articles', 'categories', 'tags'));
     }
 
     public function indexValidationPost()
@@ -51,58 +53,60 @@ class HomeController extends Controller
     public function indexHomeTestimonial()
     {
         $testimonial = Testimonial::all();
-        return view('homePageTask/testimonial',compact('testimonial'));
+        return view('homePageTask/testimonial', compact('testimonial'));
     }
 
     public function indexHomeService()
     {
         $service = Service::all();
         $icones = Icone::all();
-        return view('homePageTask/myService',compact('service','icones'));
+        return view('homePageTask/myService', compact('service', 'icones'));
     }
 
     public function indexHomeImageBG()
     {
         $tasks = HomeBackground::all();
         // dd($tasks);
-        return view('homePageTask/imageBackground',compact('tasks'));
+        return view('homePageTask/imageBackground', compact('tasks'));
     }
 
     public function indexHomeVideo()
     {
         $video = VideoHomePage::all();
-        return view('homePageTask/video',compact('video'));
+        return view('homePageTask/video', compact('video'));
     }
 
     public function indexHomeAbout()
     {
         $text = TextEditor::all();
-        return view('homePageTask/about',compact('text'));
+        return view('homePageTask/about', compact('text'));
     }
 
     public function indexHomeTeam()
     {
-        return view('homePageTask/team',compact(''));
+
+        return view('homePageTask/team', compact(''));
     }
 
     public function indexMyProject()
     {
         $projects = Project::all();
         $icones = Icone::all();
-        return view('servicePage/myProject',compact('projects','icones'));
+        return view('servicePage/myProject', compact('projects', 'icones'));
     }
 
-    public function indexMesArticles(){
+    public function indexMesArticles(Article $article)
+    {
         $articles = Article::with('tags')->get();
-        return view('blogPageTask/mesArticles',compact('articles'));
+        return view('blogPageTask/mesArticles', compact('articles'));
     }
 
-    public function indexMonArticle($id){
-
+    public function indexMonArticle($id)
+    {
         $tags = Tag::find($id);
         $article = Article::find($id);
         $categories = Categorie::find($id);
 
-        return view('blogPageTask/monArticle',compact('article','categories','tags'));
+        return view('blogPageTask/monArticle', compact('article', 'categories', 'tags'));
     }
 }

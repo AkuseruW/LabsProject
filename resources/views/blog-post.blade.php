@@ -28,12 +28,12 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<div id="preloder">
+	<!-- <div id="preloder">
 		<div class="loader">
 			<img src="/img/logo.png" alt="">
 			<h2>Loading.....</h2>
 		</div>
-	</div>
+	</div> -->
 
 
 	<!-- Header section -->
@@ -45,11 +45,11 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li><a href="home.html">Home</a></li>
-				<li><a href="services.html">Services</a></li>
-				<li class="active"><a href="blog.html">Blog</a></li>
-				<li><a href="contact.html">Contact</a></li>
-				<li><a href="elements.html">Elements</a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="/services">Services</a></li>
+				<li class="active"><a href="/blog">Blog</a></li>
+				<li><a href="/contact">Contact</a></li>
+				<!-- <li><a href="elements.html">Elements</a></li> -->
 			</ul>
 		</nav>
 	</header>
@@ -94,7 +94,7 @@
                                 @foreach ($article->tags as $tag)
                                 <a href="">{{ $tag->name }}</a>
                                 @endforeach
-								<a href="">{{ count($article->commentaires) }} Comments</a>
+								<a href="#commentaire">{{ count($article->commentaires) }} Comments</a>
 							</div>
 							{!! $article->content !!}
 						</div>
@@ -105,17 +105,17 @@
 							</div>
 							<div class="author-info">
 								<h2>{{ $article->user->name }}, <span>Author</span></h2>
-								<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
+								<p>{{$article->user->biography}}</p>
 							</div>
 						</div>
 						<!-- Post Comments -->
-						<div class="comments">
+						<div class="comments" id='commentaire'>
 							<h2>Comments ({{ count($article->commentaires) }})</h2>
 							<ul class="comment-list">
                                 @foreach ($article->commentaires as $commentaires)
 								<li>
 									<div class="avatar">
-										<img src="/img/avatar/01.jpg" alt="">
+										<img src="/img/avatar/{{$commentaires->imgCommentaire->image}}" alt="">
 									</div>
 									<div class="commetn-text">
 										<h3>{{ $commentaires->name }} | {{ $article->created_at->format('d M, Y ') }}| Reply</h3>
@@ -150,7 +150,7 @@
 					</div>
 				</div>
 				<!-- Sidebar area -->
-				@include('partials/sidebar')
+				@include('partials/sidebarSearch')
 			</div>
 		</div>
 	</div>

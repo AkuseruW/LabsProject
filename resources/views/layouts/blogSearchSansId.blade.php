@@ -51,7 +51,7 @@
                 <li><a href="services">Services</a></li>
                 <li class="active"><a href="blog">Blog</a></li>
                 <li><a href="contact">Contact</a></li>
-                <li><a href="elements">Elements</a></li>
+                {{-- <li><a href="elements">Elements</a></li> --}}
             </ul>
         </nav>
     </header>

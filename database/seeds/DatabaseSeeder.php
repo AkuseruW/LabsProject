@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectTableSeeder::class);
         $this->call(TagTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
+        $this->call(ImgCommentaireTableSeeder::class);
+        $this->call(CompagniesTableSeeder::class);
+        $this->call(InstagramTableSeeder::class);
     }
 }

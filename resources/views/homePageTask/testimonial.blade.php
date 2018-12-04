@@ -31,31 +31,31 @@
 
 <div class="container">
     <div class="mt-3">
-        <form action="/createTesti" method="post">
+        <form action="/createTesti" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
                 <div class="pt-2 pb-2 col-6">
                     <h4>Nom</h4>
-                    <input class="form-control form-control-lg" name="name" type="text" required>
+                <input class="form-control form-control-lg" name="name" type="text" value="{{old('name')}}" required>
                 </div>
 
                 <div class="pt-2 pb-2 col-6">
                     <h4>Fonction</h4>
-                    <input class="form-control form-control-lg" name="fonction" type="text" required>
+                    <input class="form-control form-control-lg" name="fonction" type="text" value="{{old('fonction')}}"  required>
                 </div>
             </div>
 
 
             <div class="pb-2">
                 <h4>Avis</h4>
-                <textarea class="form-control form-control-lg" name="avis" id="" cols="30" rows="10" required>
+                <textarea class="form-control form-control-lg" name="avis" id="" cols="30" rows="10" value="{{old('avis')}}" required>
 
                 </textarea>
             </div>
 
-            <div class="pt-2 pb-2 text-center">
-                <input type="file" name="image" id="" required>
+            <div class="pt-2 pb-3 text-center">
+                <input type="file" name="image" id="" value="{{old('image')}}" required>
             </div>
 
             <div class="text-center">
@@ -68,8 +68,8 @@
 <div class="mt-5">
     <div class="row">
         @foreach ($testimonial as $testim)
-        <form class="col-3" action="" method="post">
-
+    <form class="col-3" action="/deleteTestimonial/{{$testim->id}}" method="post">
+        @csrf
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="{{ Storage::url($testim->image)}}" alt="Card image cap">
                 <div class="card-body">

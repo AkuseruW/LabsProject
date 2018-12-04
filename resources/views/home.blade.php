@@ -1,4 +1,5 @@
 @extends('layouts.labs')
+
 <!-- Header section -->
 <header class="header-section">
     <div class="logo">
@@ -75,9 +76,8 @@
             @foreach ($text as $txt)
             {!! $txt->text !!}
             @endforeach
-
             <div class="text-center mt60">
-                <a href="" class="site-btn">Browse</a>
+                <a href="/blog" class="site-btn">Browse</a>
             </div>
             <!-- popup video -->
             <div class="intro-video">
@@ -120,7 +120,8 @@
                         <p>{{ $testimonial->avis }}</p>
                         <div class="client-info">
                             <div class="avatar">
-                                <img src="img/avatar/01.jpg" alt="">
+                                
+                                <img src="{{ Storage::url('public/img/testimonialImage/'.$testimonial->image) }}" alt="">
                             </div>
                             <div class="client-name">
                                 <h2>{{ $testimonial->name }}</h2>
@@ -168,7 +169,7 @@
 
         </div>
         <div class="text-center">
-            <a href="" class="site-btn">Browse</a>
+            <a href="/services" class="site-btn">Browse</a>
         </div>
     </div>
 </div>
@@ -189,7 +190,7 @@
                 <div class="member">
                     <img src="{{ Storage::url('img/redimensionner/'.$users[0]->imageUsers->url) }}" alt="">
                     <h2>{{ $users[0]->name }}</h2>
-                    {{ dd($users[0]->positions) }}
+
                     <h3>{{ $users[0]->positions->name }}</h3>
                 </div>
             </div>
@@ -197,17 +198,18 @@
             <!-- single member -->
             <div class="col-sm-4">
                 <div class="member">
-                    <img src="img/team/{{ $admin[0]->imageUsers->url }}" alt="">
+                    <img src="{{ Storage::url('img/redimensionner/'.$admin[0]->imageUsers->url) }}" alt="">
                     <h2>{{ $admin[0]->name }}</h2>
-                    {{-- <h3>{{ $admin[0]->positions->name }}</h3> --}}
+                    <h3>{{ $admin[0]->positions->name }}</h3>
                 </div>
             </div>
             <!-- single member -->
             <div class="col-sm-4">
                 <div class="member">
-                    <img src="{{ Storage::url('img/redimensionner/'.$users2[0]->imageUsers->url) }}" alt="">
-                    <h2>{{ $users2[0]->name }}</h2>
-                    {{-- <h3>{{ $users2[0]->positions->name }}</h3> --}}
+                    {{-- {{dd('img/redimensionner/'.$users[1]->imageUsers->url)}} --}}
+                    <img src="{{ Storage::url('img/redimensionner/'.$users[1]->imageUsers->url) }}" alt="">
+                    <h2>{{ $users[1]->name }}</h2>
+                    <h3>{{ $users[1]->positions->name }}</h3>
                 </div>
             </div>
         </div>
@@ -226,7 +228,7 @@
             </div>
             <div class="col-md-3">
                 <div class="promo-btn-area">
-                    <a href="" class="site-btn btn-2">Browse</a>
+                    <a href="/services" class="site-btn btn-2">Browse</a>
                 </div>
             </div>
         </div>

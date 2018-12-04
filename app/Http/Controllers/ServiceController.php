@@ -7,14 +7,10 @@ use App\Icone;
 use Validator;
 use App\Project;
 use Illuminate\Http\Request;
+use App\Http\Requests\ServiceValidation;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // $projects = Project::all();
@@ -27,86 +23,35 @@ class ServiceController extends Controller
         // return view ('homePageTask/service',compact('services','serviceNoRandom','projects','projectsTrois'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
+    public function create(ServiceValidation $request)
     {
-        $validator = Validator::make($request->all(), [
-            'titreService' => 'required',
-            'descriptionService' => 'required',
-            'iconeService'=>'required',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        $this->authorize('admin');
 
         $service = new Service;
         $service->titre = $request->titreService;
         $service->description = $request->descriptionService;
         $service->icones_id = $request->iconeService;
         $service->save();
-        return redirect()->back()->with('success','Nouveau Service creer');
+        return redirect()->back()->with('success', 'Nouveau Service creer');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Request $request, $id)
     {
-        //
+        $service = Service::find($id);
+        $service->titre = $request->titreService;
+        $service->description = $request->descriptionService;
+        $service->icones_id = $request->iconeService;
+
+        $service->save();
+        return redirect()->back()->with('success', 'Update Service creer');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Service $service)
+    public function destroy($id)
     {
-        //
-    }
+        $this->authorize('admin');
+        $service = Service::find($id);
+        $service->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Service $service)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Service $service)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Service $service)
-    {
-        //
+        return redirect()->back()->with('success', 'Delete Service creer');
     }
 }

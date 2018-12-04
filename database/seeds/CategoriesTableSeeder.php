@@ -20,10 +20,6 @@ class CategoriesTableSeeder extends Seeder
             'slug' => 'nisi-eu-lobortis-pharetra',
         ]);
         DB::table('categories')->insert([
-            'name' => 'Vestibulum maximus',
-            'slug' => 'vestibulum-maximus',
-        ]);
-        DB::table('categories')->insert([
             'name' => 'Orci quam accumsan',
             'slug' => 'orci-quam-accumsan',
         ]);

@@ -10,6 +10,7 @@
 <div class="container">
     <div class="row">
         @foreach ($articles as $article)
+        @can('editeur',$article)
 
         <div class="col">
 
@@ -31,6 +32,7 @@
             </div>
 
         </div>
+        @endcan
         @endforeach
 
     </div>

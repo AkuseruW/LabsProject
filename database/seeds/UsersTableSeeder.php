@@ -34,7 +34,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'aouais.aouais@outlook.be',
             'password' => bcrypt('sale'),
             'roles_id' => '3',
-            'positions_id' => '1',
             'image_user'=>'3',
         ]);
 
@@ -43,7 +42,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'damsdams@outlook.be',
             'password' => bcrypt('dams'),
             'roles_id' => '3',
-            'positions_id' => '1',
             'image_user'=>'3',
         ]);
 

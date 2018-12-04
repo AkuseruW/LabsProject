@@ -25,7 +25,7 @@
             <form action="/insertVideo" method="POST" enctype="multipart/form-data">
                 @csrf
                 @foreach ($video as $insertVideo)
-                <input style="height:12vh" class="form-control form-control" name="video" type="text" value=" {{ $insertVideo->video }} ">
+                <input style="height:12vh" class="form-control form-control" name="video" type="text" value=" {{ $insertVideo->video }} " required>
                 @endforeach
                 <div class="text-center">
                     <button class="btn btn-lg mt-3" type="submit">Send</button>

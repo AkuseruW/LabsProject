@@ -11,7 +11,7 @@ return [
     | of your page. You can override it per page with the title section.
     | You can optionally also specify a title prefix and/or postfix.
     |
-    */
+ */
 
     'title' => 'AdminLTE 2',
 
@@ -28,7 +28,7 @@ return [
     | You can use basic HTML here if you want. The logo has also a mini
     | variant, used for the mini side bar. Make it 3 letters or so
     |
-    */
+     */
 
     'logo' => '<b>Admin</b>LTE',
 
@@ -43,7 +43,7 @@ return [
     | blue, black, purple, yellow, red, and green. Each skin also has a
     | ligth variant: blue-light, purple-light, purple-light, etc.
     |
-    */
+     */
 
     'skin' => 'blue',
 
@@ -56,7 +56,7 @@ return [
     | null, 'boxed', 'fixed', 'top-nav'. null is the default, top-nav
     | removes the sidebar and places your menu in the top navbar
     |
-    */
+     */
 
     'layout' => null,
 
@@ -69,7 +69,7 @@ return [
     | bar. To adjust your sidebar layout simply set this  either true
     | this is compatible with layouts except top-nav layout option
     |
-    */
+     */
 
     'collapse_sidebar' => false,
 
@@ -83,7 +83,7 @@ return [
     | You can set the request to a GET or POST with logout_method.
     | Set register_url to null if you don't want a register link.
     |
-    */
+     */
 
     'dashboard_url' => 'home',
 
@@ -105,21 +105,47 @@ return [
     | Font Awesome. A string instead of an array represents a header in sidebar
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     |
-    */
+     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'ACCOUNT SETTINGS',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Profile',
+            'icon' => 'user',
+            'url' => '/admin-master/profile',
 
         ],
         [
-            'text'        => 'Edit Home Page',
-            'icon'        => 'file',
+            'text' => 'Validation',
+            'icon' => 'check-square-o',
+            'url' => '/adminHome',
+            'can' => 'admin',
+        ],
+        [
+            'text' => 'Compagnie',
+            'icon' => 'xing',
+            'url' => '/compagny',
+            'can' => 'admin',
+        ],
+        'MAIN NAVIGATION',
+        [
+            'text' => 'Users',
+            'icon' => 'users',
+            'can' => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'NEW USER',
+                    'url' => '/user',
+                ],
+            ],
+        ],
+
+        [
+            'text' => 'EDIT HOME',
+            'icon' => 'home',
             'badge_color' => 'success',
-            'submenu' =>[
+            'can' => 'admin',
+            'submenu' => [
                 [
                     'text' => 'IMAGE FOND',
                     'url' => '/imageBackground',
@@ -139,13 +165,15 @@ return [
             ]
         ],
         [
-            'text'        => 'PROJECTS',
-            'icon'        => 'file',
+            'text' => 'PROJECTS',
+            'icon' => 'comment-o',
             'badge_color' => 'success',
-            'submenu' =>[
+            'can' => 'admin',
+            'submenu' => [
                 [
                     'text' => 'NEW PROJECTS',
                     'url' => '/project',
+
                 ],
                 [
                     'text' => 'MY PROJECTS',
@@ -154,10 +182,11 @@ return [
             ]
         ],
         [
-            'text'        => 'Service Page',
-            'icon'        => 'file',
+            'text' => 'Service Page',
+            'icon' => 'desktop',
             'badge_color' => 'success',
-            'submenu' =>[
+            'can' => 'admin',
+            'submenu' => [
                 [
                     'text' => 'NEW SERVICES',
                     'url' => '/service',
@@ -166,14 +195,14 @@ return [
                     'text' => 'MY SERVICES',
                     'url' => '/myService',
                 ],
-                ]
+            ]
         ],
 
         [
-            'text'        => 'Blog Page',
-            'icon'        => 'file',
+            'text' => 'Blog Page',
+            'icon' => 'comments-o',
             'badge_color' => 'success',
-            'submenu' =>[
+            'submenu' => [
                 [
                     'text' => 'ARTICLES',
                     'url' => '/articles',
@@ -183,40 +212,6 @@ return [
                     'url' => '/mesArticles',
                 ],
             ]
-        ],
-
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        [
-            'text'    => 'User',
-            'icon'    => 'user',
-            'submenu' => [
-                [
-                    'text' => 'NEW USER',
-                    'url'  => '/user',
-                ],
-                [
-                    'text' => 'MEMBRE',
-                    'url'  => '/membre',
-                ],
-            ],
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
         ],
     ],
 
@@ -230,7 +225,7 @@ return [
     | You can comment out the GateFilter if you don't want to use Laravel's
     | built in Gate functionality
     |
-    */
+     */
 
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
@@ -249,11 +244,11 @@ return [
     | only DataTables is supported as a plugin. Set the value to true
     | to include the JavaScript file from a CDN via a script tag.
     |
-    */
+     */
 
     'plugins' => [
         'datatables' => true,
-        'select2'    => true,
-        'chartjs'    => true,
+        'select2' => true,
+        'chartjs' => true,
     ],
 ];

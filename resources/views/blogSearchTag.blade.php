@@ -48,11 +48,11 @@
         <div class="responsive"><i class="fa fa-bars"></i></div>
         <nav>
             <ul class="menu-list">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li class="active"><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="elements.html">Elements</a></li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li class="active"><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
+                {{-- <li><a href="/elements">Elements</a></li> --}}
             </ul>
         </nav>
     </header>
@@ -111,7 +111,7 @@
                 </div>
 
                 <!-- Sidebar area -->
-                @include('partials/sidebar')
+                @include('partials/sidebarSearch')
             </div>
         </div>
     </div>

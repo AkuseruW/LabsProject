@@ -4,23 +4,32 @@
 
 @section('content_header')
 
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 @stop
 
 @section('content')
-
 <div class="container mb-5">
     <form action="/createArticles" method="post">
         @csrf
         <div>
             <h3>Nom Article</h3>
-            <input class="form-control mb-4" name="titreArticle" type="text" placeholder="Default input">
+            <input class="form-control mb-4" name="titreArticle" type="text" placeholder="Default input" required>
         </div>
         <div class="row pb-4">
             <div class="col-6">
                 <h3>Default Categorie</h3>
                 <div class="row">
                     <div class="col-11" style="padding-right:0">
-                        <select class="form-control" name="categories" id="">
+                        <select class="form-control js-example-basic-multiple" name="categories">
                             @foreach ($categories as $key => $categorie)
                             <option value="{{ $categorie->id }}">{{$categorie->name}}</option>
                             @endforeach
@@ -34,10 +43,15 @@
 
             </div>
             <div class="col-6">
-                <h3>Default Tag</h3>
+                <h3>Tags</h3>
                 <div class="row">
                     <div class="col-11" style="padding-right:0">
-                        <select class="form-control" name="tags" id="">
+                        {{-- <select class="form-control" name="tags" id="">
+                            @foreach ($tags as $key => $tag)
+                            <option value="{{ $tag->id }}">{{$tag->name}}</option>
+                            @endforeach
+                        </select> --}}
+                        <select class="form-control js-example-basic-multiple" name="tags[]" multiple="multiple">
                             @foreach ($tags as $key => $tag)
                             <option value="{{ $tag->id }}">{{$tag->name}}</option>
                             @endforeach
@@ -48,14 +62,12 @@
                         <button type="button" class="btn js-toggles">+</button>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
         <h3>Content</h3>
         <script src="/ckeditor/ckeditor.js"></script>
-        <textarea name="descriptionArticle" id="editor1" rows="10" cols="80">
+        <textarea name="descriptionArticle" id="editor1" rows="10" cols="80" required>
 
         </textarea>
 
@@ -136,6 +148,9 @@
         $('.slide').toggleClass('active');
     });
 
+    $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+    });
 </script>
 
 @stop

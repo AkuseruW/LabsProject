@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Compagny;
 use Illuminate\Http\Request;
 use App\Service;
 use App\VideoHomePage;
@@ -15,6 +16,7 @@ class PageHomeController extends Controller
 {
     public function index()
     {
+        $compagnie = Compagny::all();
         $testimonials = Testimonial::all();
         $serviceNoRandom = Service::all();
         $services = Service::all()->random(3);
@@ -22,9 +24,8 @@ class PageHomeController extends Controller
         $video = VideoHomePage::all();
         $text = TextEditor::all();
         $admin = User::find([1]);
-        $users = User::all()->where('id', '>', '1', '&&', 'positions_id', '!=', 'Null')->random(1);
-        // $users2 = User::all()->where('id', '>', '1', '&&', 'id', '!=', 'users' )->random(1);
+        $users = User::whereNotNull('positions_id')->where('id', '>', 1)->get()->random(2);
         $imgBackground = HomeBackground::all();
-        return view ('home',compact('services','serviceNoRandom','video','text','admin','users','users2','icones','testimonials','imgBackground'));
+        return view('home', compact('services', 'serviceNoRandom', 'video', 'text', 'admin', 'users', 'users2', 'icones', 'testimonials', 'imgBackground', 'compagnie'));
     }
 }

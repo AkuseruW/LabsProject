@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    public $fillable = ['name','content'];
+    public $fillable = ['name', 'content'];
 
     public function tags()
     {
@@ -25,11 +25,11 @@ class Article extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User','user_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
     public function roles()
     {
-        return $this->belongsTo('App\Image','');
+        return $this->belongsTo('App\Image', '');
     }
     public function tagArticle()
     {

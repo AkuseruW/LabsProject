@@ -2,7 +2,7 @@
     <div class="row">
 
         <div class="col-md-12">
-            <h4><span class="text-danger">ARTICLE</span> en attente de validation !</h4>
+            <h4>Articles en attente de validation !</h4>
             <div class="table-responsive">
 
                 <table id="mytable" class="table mt-5 table-bordred table-striped">
@@ -32,20 +32,20 @@
 
                                 <td class="text-center">
                                     <p data-placement="top" data-toggle="tooltip" title="ok"><button class="btn btn-success btn-xs"
-                                            data-title="Validate" data-toggle="modal" data-target="#validate{{ $article->id }}"
+                                            data-title="Validate" data-toggle="modal" data-target="#validateA{{ $article->id }}"
                                             type="button"><span class="glyphicon glyphicon-ok"><i class="fas fa-check"></i></span></button></p>
                                 </td>
 
                                 <td class="text-center">
                                     <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs"
-                                            data-title="Delete" data-toggle="modal" data-target="#delete{{ $article->id }}" type="button"><span
+                                            data-title="Delete" data-toggle="modal" data-target="#deleteA{{ $article->id }}" type="button"><span
                                                 class="glyphicon glyphicon-trash"><i class="fas fa-trash-alt"></i></span></button></p>
                                 </td>
                             </tr>
                         </tbody>
                     </form>
 
-                    <div class="modal fade" id="validate{{ $article->id }}" tabindex="-1" role="dialog" aria-labelledby="edit"
+                    <div class="modal fade" id="validateA{{ $article->id }}" tabindex="-1" role="dialog" aria-labelledby="edit"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -74,7 +74,7 @@
                         </div>
                         <!-- /.modal-dialog -->
                     </div>
-                    <div class="modal fade" id="delete{{ $article->id }}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                    <div class="modal fade" id="deleteA{{ $article->id }}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -114,5 +114,5 @@
 </div>
 
 
-<script src="{{url('js/app.js')}}"></script>
-<link rel="stylesheet" href="{{url('css/app.css')}}">
+
+{{-- <link rel="stylesheet" href="{{url('css/app.css')}}"> --}}

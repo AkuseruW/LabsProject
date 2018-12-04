@@ -10,10 +10,11 @@
 
 
 {{-- <h1>Mes Articles</h1> --}}
-
 <div class="container">
     <div class="row">
-        <form action="" method="post">
+        {{-- {{dd($article->id)}} --}}
+        <form action="/deleteArticle/{{$article->id}}" method="post">
+            @csrf
             <div class="single-post">
                 <div class="post-thumbnail ">
 
@@ -31,7 +32,7 @@
                         @foreach ($article->tags as $tag)
                         <a href="">{{ $tag->name }}</a>
                         @endforeach
-                        <a href="">2 Comments</a>
+                        <a href="/commentaire/{{ $article->id }}">{{ count($article->commentaires) }} Comments</a>
                     </div>
                     <p>
                         {!! $article->content !!}
@@ -40,21 +41,19 @@
                 <!-- Post Author -->
                 <div class="author pt-5">
                     <div class="avatar">
-                        <img src="/img/team/{{ $article->user->imageUsers->url }}" alt="">
+                        <img src="{{ Storage::url('img/redimensionner/'.$article->user->imageUsers->url) }}" alt="">
                     </div>
                     <div class="author-info">
                         {{-- {{ dd($article->user->name) }} --}}
                         <h2>{{ $article->user->name }}, <span>Author</span></h2>
-                        <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit
-                            metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
+                    <p>{{$article->user->biography}}</p>
                     </div>
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-danger btn-lg">Delete</button>
+                    <button type="submit" class="btn btn-danger btn-lg">Delete</button>
                     {{-- {{ dd($article->id) }} --}}
                     <a href="/editArticle/{{ $article->id }}" class="btn btn-warning btn-lg">Edit</a>
                 </div>
-
         </form>
     </div>
 </div>

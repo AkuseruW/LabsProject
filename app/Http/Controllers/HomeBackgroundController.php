@@ -111,7 +111,6 @@ class HomeBackgroundController extends Controller
     public function destroy($id)
     {
         $image=HomeBackground::find($id);
-        dd($image);
         $image->delete();
 
         return redirect()->back()->with('success','User delete !');

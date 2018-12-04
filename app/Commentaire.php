@@ -10,4 +10,8 @@ class Commentaire extends Model
     {
         return $this->belongsToMany(Article::class);
     }
+    public function imgCommentaire()
+    {
+        return $this->belongsTo(ImageCommentaire::class, 'img_id');
+    }
 }

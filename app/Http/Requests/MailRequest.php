@@ -26,7 +26,7 @@ class MailRequest extends FormRequest
         return [
             'name' => 'required|min:3',
             'email' => 'required|email',
-            'subject' => 'required|min:10',
+            'subject' => 'required|',
             'message' => 'required|min:10',
         ];
     }

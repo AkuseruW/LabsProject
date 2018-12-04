@@ -8,62 +8,66 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Tag;
 use App\Categorie;
+use App\ImageCommentaire;
 
 class BlogPageController extends Controller
 {
     public function indexArticles()
     {
-        $tags = Tag::all();
-        $categories = Categorie::all();
+        $tags = Tag::orderBy('name')->where('validation', '=', '1')->get();
+        $categories = Categorie::orderBy('name')->where('validation', '=', '1')->get();
         $articles = Article::all();
-        return view('blogPageTask/articlesCreate',compact('tags','articles','categories'));
+        return view('blogPageTask/articlesCreate', compact('tags', 'articles', 'categories'));
     }
 
     public function indexArticlesBlog()
     {
-        $articles = Article::orderBy('created_at','desc')->where('validation','=','1')->paginate(3);
-        $tags = Tag::all();
-        $categories = Categorie::all();
-        return view('blog', compact('articles','categories','tags'));
+        $articles = Article::orderBy('created_at', 'desc')->where('validation', '=', '1')->paginate(3);
+        $imgCommentaire = ImageCommentaire::all()->random(1);
+        $tags = Tag::orderBy('name')->where('validation', '=', '1')->get();
+        $categories = Categorie::orderBy('name')->where('validation', '=', '1')->get();
+        return view('blog', compact('articles', 'categories', 'tags', 'imgCommentaire'));
     }
 
     public function indexArticlesView($id)
     {
         $article = Article::find($id);
-        $tags = Tag::all();
-        $categories = Categorie::all();
-        return view('blog-post',compact('article','categories','tags'));
+
+        $tags = Tag::orderBy('name')->where('validation', '=', '1')->get();
+        $categories = Categorie::orderBy('name')->where('validation', '=', '1')->get();
+        $imgCommentaire = ImageCommentaire::all()->random(1);
+        return view('blog-post', compact('article', 'categories', 'tags', 'imgCommentaire'));
     }
 
-    public function searchArticle(){
-        $categories = Categorie::All();
-        $tags = Tag::all();
-        $articles = Article::all();
-        $search = Input::get ( 'search' );
-        $articleSearch = Article::where('name','LIKE','%'.$search.'%')->orWhere('content','LIKE','%'.$search.'%')->with('tags')->paginate(3);
+    public function searchArticle()
+    {
+        // $articles = Article::all();
+        $tags = Tag::orderBy('name')->where('validation', '=', '1')->get();
+        $categories = Categorie::orderBy('name')->where('validation', '=', '1')->get();
+        $search = Input::get('search');
+        $articleSearch = Article::where('name', 'LIKE', '%' . $search . '%')->orWhere('content', 'LIKE', '%' . $search . '%')->with('tags')->paginate(3);
 
-        if(count($articleSearch) > 0)
-
-        return view('blogSearch',compact('articles','articleSearch','tags','categories'))->withDetails($articleSearch)->withQuery($search);
-        else return view ('blogSearch')->withMessage('No Details found. Try to search again !');
+        return view('blogSearch', compact('articleSearch', 'tags', 'categories'))->withDetails($articleSearch)->withQuery($search);
     }
 
-    public function searchArticleTag($id){
-        $categories = Categorie::All();
-        $tags = Tag::all();
+    public function searchArticleTag($id)
+    {
+        $tags = Tag::orderBy('name')->where('validation', '=', '1')->get();
+        $categories = Categorie::orderBy('name')->where('validation', '=', '1')->get();
         $rshTag = Tag::find($id);
         $pagination = $rshTag->articles()->paginate(3);
 
-        return view ('blogSearchTag',compact('tags','pagination','categories'));
+        return view('blogSearchTag', compact('tags', 'pagination', 'categories'));
     }
 
-    public function searchArticleCategorie($id){
-        $categories = Categorie::All();
-        $tags = Tag::all();
+    public function searchArticleCategorie($id)
+    {
+        $tags = Tag::orderBy('name')->where('validation', '=', '1')->get();
+        $categories = Categorie::orderBy('name')->where('validation', '=', '1')->get();
         $rshArticles = Categorie::find($id);
         $pagination = $rshArticles->articles()->paginate(3);
 
-        return view ('blogSearchTag',compact('tags','pagination','categories'));
+        return view('blogSearchCategorie', compact('tags', 'pagination', 'categories'));
     }
 
 }
